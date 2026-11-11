@@ -73,9 +73,15 @@ textarea,select,.txt{width:100%;border-radius:10px;border:1px solid var(--line);
 /* figura animata */
 svg.anim .fl{stroke:var(--line);stroke-width:1.2}
 svg.anim .pr{stroke:var(--mut);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
-svg.anim .bd,svg.anim .bk{stroke:var(--tx);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
-svg.anim .bk{opacity:.45}
-svg.anim .hd{fill:var(--card2);stroke:var(--tx);stroke-width:3}
+svg.anim{--sk:#e6b99c;--skb:#94735f;--hr:#6a4a3a}
+svg.anim .p{stroke:var(--card2);stroke-width:.7;paint-order:stroke;stroke-linejoin:round}
+svg.anim .sk{fill:var(--sk)}svg.anim .skb{fill:var(--skb)}
+svg.anim .sh{fill:var(--mut);stroke-width:.7}
+svg.anim .st{fill:color-mix(in srgb,var(--mut) 42%,var(--bg))}svg.anim .stb{fill:color-mix(in srgb,var(--mut) 26%,var(--bg))}
+svg.anim .so{fill:var(--tx)}svg.anim .sob{fill:var(--mut)}
+svg.anim .hr{fill:var(--hr)}
+svg.anim .wh{stroke:var(--acc);stroke-width:4.8;fill:none}
+svg.anim .wb{stroke:var(--acc);stroke-width:1.5;fill:none}
 svg.anim .w{stroke:var(--acc);stroke-width:3.6;stroke-linecap:round;fill:none}
 svg.anim .wf{fill:var(--acc)}
 </style>
@@ -131,7 +137,7 @@ const A={
  kb_press:{f:[mk('standF',{eR:[62,37],hR:[60,27]}),mk('standF',{eR:[59,14],hR:[57,3]})],p:{kb:'R'}},
  push_press:{f:[mk('standF',RACK),mk('standF',{H:[50,21],N:[50,31],P:[50,59],Mk:[42,75],Me:[37,40],Mh:[38,29]}),mk('standF',OHT),mk('standF',OHT)],p:{db:'LR'},d:[350,380,500,800]},
  lat_raise:{f:[mk('standF'),mk('standF',{Me:[37,30],Mh:[25,29]})],p:{db:'LR'}},
- front_raise:{f:[mk('standS'),mk('standS',{e:[60,31],h:[71,29]})],p:{db:'LR'}},
+ front_raise:{f:[mk('standS'),mk('standS',{e:[60,31],h:[71,29]})],p:{dbe:'LR'}},
  oh_ext:{f:[mk('standF',{Me:[43,13],Mh:[48,3]}),mk('standF',{Me:[39,13],Mh:[47,25]})],p:{db:'R'}},
  skull:{f:[mk('supS'),mk('supS',{h:[17,77]})],p:{db:'LR'}},
  kickback:{f:[mk('bentS',{e:[52,43],h:[57,55]}),mk('bentS',{e:[52,43],h:[40,42]})],p:{db:'LR'}},
@@ -142,17 +148,18 @@ const A={
  neg_pullup:{f:[mk('hangF',TOP),mk('hangF')],p:{bar:1},d:[3000,600]},
  knee_raise:{f:[mk('hangS'),mk('hangS',{k:[63,56],f:[61,70]})],p:{barS:1}},
  leg_raise:{f:[mk('hangS'),mk('hangS',{k:[64,62],f:[78,61]})],p:{barS:1}},
- t2b:{f:[mk('hangS'),mk('hangS',{H:[35,25],N:[40,33],P:[33,57],e:[45,22],k:[43,36],f:[51,15]})],p:{barS:1}},
+ t2b:{f:[mk('hangS'),mk('hangS',{H:[37,21],N:[40,29],P:[56,44],e:[45,20],k:[55,30],f:[52,16]})],p:{barS:1}},
  row1:{f:[mk('bentS',{eL:[56,54],hL:[46,66]}),mk('bentS',{eL:[56,54],hL:[46,66],eR:[54,39],hR:[60,51]})],p:{db:'R'}},
  row2:{f:[mk('bentS'),mk('bentS',ROWU)],p:{db:'LR'}},
  gorilla:{f:[mk('bentS',Object.assign({},GOR,{eL:[55,51],hL:[60,63]})),mk('bentS',GOR),mk('bentS',Object.assign({},GOR,{eR:[56,51],hR:[61,63]})),mk('bentS',GOR)],p:{kb:'LR'},d:600},
  renegade:{f:[mk('plankS',{eR:[63,58],hR:[68,70]}),mk('plankS'),mk('plankS',{eL:[62,58],hL:[67,70]}),mk('plankS')],p:{db:'LR'},d:650},
- rev_fly:{f:[mk('bentS'),mk('bentS',{e:[60,45],h:[57,40]})],p:{db:'LR'}},
+ rev_fly:{f:[mk('standF',{H:[50,41],N:[50,44],P:[50,53],Me:[43,57],Mh:[45,69]}),mk('standF',{H:[50,41],N:[50,44],P:[50,53],Me:[33,45],Mh:[20,43]})],p:{db:'LR'}},
  pullover:{f:[mk('supS'),mk('supS',{e:[13,80],h:[3,84]})],p:{db:'R'}},
- curl:{f:[mk('standS'),mk('standS',{h:[59,31]})],p:{db:'LR'}},
+ curl:{f:[mk('standS'),mk('standS',{e:[50,41],h:[57,29]})],p:{dbe:'LR'}},
+ hammer:{f:[mk('standS'),mk('standS',{e:[50,41],h:[60,33]})],p:{db:'LR'}},
  curl_alt:{f:[mk('standF',{hL:[42,29]}),mk('standF'),mk('standF',{hR:[58,29]}),mk('standF')],p:{db:'LR'},d:650},
  plank:{f:[mk('plankS',{e:[70,90],h:[80,90],N:[70,77],H:[78,73],P:[45,78],k:[30,83]}),mk('plankS',{e:[70,90],h:[80,90],N:[70,77.6],H:[78,73.6],P:[45,77],k:[30,82.6]})],d:1500},
- tap:{f:[mk('plankS',{hL:[73,70],eL:[66,77]}),mk('plankS'),mk('plankS',{hR:[74,70],eR:[67,77]}),mk('plankS')],d:550},
+ tap:{f:[mk('plankS',{hR:[66,65],eR:[60,76]}),mk('plankS'),mk('plankS',{hL:[65,65],eL:[59,76]}),mk('plankS')],d:600},
  mountain:{f:[mk('plankS',{kL:[56,80],fL:[44,89]}),mk('plankS',{kR:[57,80],fR:[45,89]})],d:420},
  carry:{f:[mk('standS',{kL:[55,72],fL:[58,89],kR:[47,73],fR:[42,89]}),mk('standS',{kL:[46,73],fL:[41,89],kR:[56,72],fR:[59,89]})],p:{kb:'LR'},d:600},
  situp:{f:[mk('supS',{e:[34,82],h:[30,79]}),mk('supS',{H:[50,58],N:[47,67],e:[55,68],h:[62,70]})]},
@@ -167,32 +174,50 @@ const A={
 const JN=['H','N','P','eL','hL','eR','hR','kL','fL','kR','fR'];
 function lerp(a,b,t){const o={sw:a.sw+(b.sw-a.sw)*t,hw:a.hw+(b.hw-a.hw)*t};for(const j of JN)o[j]=[a[j][0]+(b[j][0]-a[j][0])*t,a[j][1]+(b[j][1]-a[j][1])*t];return o;}
 function animSvg(key){return `<svg class="anim" viewBox="0 0 100 100" data-a="${key}" aria-hidden="true"></svg>`;}
+const PARTS={s:[['aL','skb'],['lL','skb'],['tL','stb'],['oL','sob'],['to','sh'],['pv','st'],['nk','sk'],['hd'],['lR','sk'],['tR','st'],['oR','so'],['aR','sk']],
+ f:[['lL','sk'],['tL','st'],['oL','so'],['lR','sk'],['tR','st'],['oR','so'],['pv','st'],['to','sh'],['nk','sk'],['hd'],['aL','sk'],['aR','sk']]};
 function setup(svg){
- const a=A[svg.dataset.a],p=a.p||{};
+ const a=A[svg.dataset.a],p=a.p||{},fr=a.f[0].sw>3;
  let h='<line class="fl" x1="3" y1="92.6" x2="97" y2="92.6"/>';
  if(p.bar)h+='<path class="pr" d="M24 92V12H76V92"/>';
- if(p.barS)h+='<path class="pr" d="M38 92V9H50"/><circle class="pr" cx="50.5" cy="12" r="1.8"/>';
+ if(p.barS)h+='<path class="pr" d="M36 92V9H50"/><circle class="pr" cx="50.5" cy="12" r="1.8"/>';
  if(p.box)h+=`<rect class="pr" x="${p.box[0]}" y="${p.box[1]}" width="${p.box[2]}" height="${p.box[3]}" rx="1.5"/>`;
  if(p.rower)h+='<path class="pr" d="M12 80H78M20 80V92M74 80V92M83 77V92"/><circle class="pr" cx="83" cy="68" r="9"/>';
  if(p.bike)h+='<circle class="pr" cx="76" cy="76" r="13"/><circle class="pr" cx="52" cy="78" r="6"/><path class="pr" d="M39 57h8M43 57L50 78M52 78H76M64 78L66 41M32 92H90"/>';
- h+='<path class="bk"/><path class="bd"/><circle class="hd" r="5"/><g class="dy"></g>';
- svg.innerHTML=h;
- svg._e={bk:svg.querySelector('.bk'),bd:svg.querySelector('.bd'),hd:svg.querySelector('.hd'),dy:svg.querySelector('.dy')};
+ h+=PARTS[fr?'f':'s'].map(x=>x[0]==='hd'?'<g data-p="hd"><ellipse class="p sk" rx="4.1" ry="4.9"/><path class="hr" d="M-4.07 -.6A4.1 4.9 0 0 1 4.07 -.6Q0 -3.6 -4.07 -.6Z"/></g>':`<path data-p="${x[0]}" class="p ${x[1]}"/>`).join('')+'<g class="dy"></g>';
+ svg.innerHTML=h;svg._fr=fr;svg._e={dy:svg.querySelector('.dy')};
+ svg.querySelectorAll('[data-p]').forEach(n=>svg._e[n.dataset.p]=n);
  const d=a.f.map((_,i)=>Array.isArray(a.d)?a.d[i]:(a.d||950));
  svg._d=d;svg._tot=d.reduce((x,y)=>x+y,0);
 }
-const pt=a=>a[0].toFixed(1)+' '+a[1].toFixed(1);
+const F=n=>n.toFixed(1),pt=a=>F(a[0])+' '+F(a[1]);
+// capsula rastremata tra due giunti: è il "muscolo" di ogni segmento
+function cap(a,b,r1,r2){const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||.01,nx=-dy/L,ny=dx/L;
+ return `M${F(a[0]+nx*r1)} ${F(a[1]+ny*r1)}L${F(b[0]+nx*r2)} ${F(b[1]+ny*r2)}A${r2} ${r2} 0 0 0 ${F(b[0]-nx*r2)} ${F(b[1]-ny*r2)}L${F(a[0]-nx*r1)} ${F(a[1]-ny*r1)}A${r1} ${r1} 0 0 0 ${F(a[0]+nx*r1)} ${F(a[1]+ny*r1)}Z`;}
+const circ=(c,r)=>`M${F(c[0]-r)} ${F(c[1])}a${r} ${r} 0 1 0 ${2*r} 0a${r} ${r} 0 1 0 ${-2*r} 0Z`;
+const mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 function draw(svg,q){
- const e=svg._e,p=A[svg.dataset.a].p||{};
- const sL=[q.N[0]-q.sw,q.N[1]+1.5],sR=[q.N[0]+q.sw,q.N[1]+1.5],pL=[q.P[0]-q.hw,q.P[1]],pR=[q.P[0]+q.hw,q.P[1]];
- e.bk.setAttribute('d',`M${pt(sL)}L${pt(q.eL)}L${pt(q.hL)}M${pt(pL)}L${pt(q.kL)}L${pt(q.fL)}`);
- e.bd.setAttribute('d',`M${pt(q.H)}L${pt(q.N)}L${pt(q.P)}M${pt(sL)}L${pt(sR)}M${pt(pL)}L${pt(pR)}M${pt(sR)}L${pt(q.eR)}L${pt(q.hR)}M${pt(pR)}L${pt(q.kR)}L${pt(q.fR)}`);
- e.bk.style.opacity=q.sw>3?1:'';
- e.hd.setAttribute('cx',q.H[0].toFixed(1));e.hd.setAttribute('cy',q.H[1].toFixed(1));
+ const e=svg._e,fr=svg._fr,p=A[svg.dataset.a].p||{},N=q.N,P=q.P;
+ const sL=[N[0]-q.sw,N[1]+1.5],sR=[N[0]+q.sw,N[1]+1.5],pL=[P[0]-q.hw,P[1]],pR=[P[0]+q.hw,P[1]];
+ const arm=(s,el,h)=>circ(s,3.3)+cap(s,el,3.1,2.5)+cap(el,h,2.5,1.8)+circ(h,2.1);
+ const leg=(h,k,f)=>cap(h,k,4.5,3.3)+cap(k,f,3.2,2.1);
+ const foot=(k,f,sd)=>{if(fr)return cap(f,[f[0]+sd*1.4,f[1]+1.3],2.1,2);const L=Math.hypot(f[0]-k[0],f[1]-k[1])||1,tx=(f[1]-k[1])/L,ty=-(f[0]-k[0])/L;return cap([f[0]-tx*.8,f[1]-ty*.8],[f[0]+tx*4.8,f[1]+ty*4.8],2.1,1.7);};
+ const S=(k,v)=>e[k].setAttribute('d',v);
+ S('aL',arm(sL,q.eL,q.hL));S('aR',arm(sR,q.eR,q.hR));
+ S('lL',leg(pL,q.kL,q.fL));S('lR',leg(pR,q.kR,q.fR));
+ S('tL',cap(pL,mix(pL,q.kL,.55),4.8,4.2));S('tR',cap(pR,mix(pR,q.kR,.55),4.8,4.2));
+ S('oL',foot(q.kL,q.fL,-1));S('oR',foot(q.kR,q.fR,1));
+ S('nk',cap(N,q.H,2.2,2.2));
+ if(fr){S('to',`M${F(sL[0]-1.6)} ${F(N[1]+.4)}L${F(sR[0]+1.6)} ${F(N[1]+.4)}L${F(pR[0]+2.6)} ${F(P[1]-7)}L${F(pR[0]+3)} ${F(P[1])}L${F(pL[0]-3)} ${F(P[1])}L${F(pL[0]-2.6)} ${F(P[1]-7)}Z`);
+  S('pv',`M${F(pL[0]-3.3)} ${F(P[1]-3)}H${F(pR[0]+3.3)}V${F(P[1]+3)}H${F(pL[0]-3.3)}Z`);}
+ else{const L=Math.hypot(P[0]-N[0],P[1]-N[1])||1;S('to',cap(mix(N,P,3/L),P,5.3,4.6));S('pv',circ(P,4.9));}
+ e.hd.setAttribute('transform',`translate(${pt(q.H)}) rotate(${F(Math.atan2(q.H[0]-N[0],N[1]-q.H[1])*57.3)})`);
  let h='';
- for(const s of (p.db||'')){const c=q['h'+s];h+=`<path class="w" d="M${(c[0]-3.6).toFixed(1)} ${c[1].toFixed(1)}h7.2"/>`;}
- for(const s of (p.kb||'')){const c=q['h'+s];h+=`<circle class="wf" cx="${c[0].toFixed(1)}" cy="${(c[1]+4.6).toFixed(1)}" r="4"/>`;}
- if(p.rower)h+=`<path class="pr" d="M${(q.P[0]-5).toFixed(1)} 76h10M${pt(q.hR)}L83 68"/>`;
+ const bar=(c,ux,uy)=>`<path class="wb" d="M${F(c[0]-ux*3)} ${F(c[1]-uy*3)}L${F(c[0]+ux*3)} ${F(c[1]+uy*3)}"/><path class="wh" d="M${F(c[0]-ux*4.6)} ${F(c[1]-uy*4.6)}L${F(c[0]-ux*2.2)} ${F(c[1]-uy*2.2)}M${F(c[0]+ux*2.2)} ${F(c[1]+uy*2.2)}L${F(c[0]+ux*4.6)} ${F(c[1]+uy*4.6)}"/>`;
+ for(const s of (p.db||'')){const c=q['h'+s],el=q['e'+s];if(fr)h+=bar(c,1,0);else{const L=Math.hypot(c[0]-el[0],c[1]-el[1])||1;h+=bar(c,-(c[1]-el[1])/L,(c[0]-el[0])/L);}}
+ for(const s of (p.dbe||'')){const c=q['h'+s];h+=`<circle class="wf" cx="${F(c[0])}" cy="${F(c[1])}" r="3"/>`;}
+ for(const s of (p.kb||'')){const c=q['h'+s];h+=`<circle class="wb" cx="${F(c[0])}" cy="${F(c[1]+1.6)}" r="2.4"/><circle class="wf" cx="${F(c[0])}" cy="${F(c[1]+6.4)}" r="4.2"/>`;}
+ if(p.rower)h+=`<path class="pr" d="M${F(P[0]-5)} 77.5h10M${pt(q.hR)}L83 68"/>`;
  e.dy.innerHTML=h;
 }
 function poseAt(svg,ms){
@@ -240,7 +265,7 @@ const EX={
  rear_row:{n:'Rematore a gomiti larghi',m:'Deltoide posteriore, trapezio',eq:'Manubri',t:'load',a:'row2',cue:'Come il rematore ma con gomiti a 70–80° dal busto e manubri verso il petto. Stringi le scapole in alto.'},
  pullover:{n:'Pullover a terra',m:'Dorsali, petto, dentato',eq:'Manubrio',t:'load',a:'pullover',cue:'Sdraiato, un manubrio a due mani. Braccia quasi tese: porta il peso dietro la testa e torna sopra il petto. Costole basse.'},
  curl:{n:'Curl con manubri',m:'Bicipiti',eq:'Manubri',t:'load',a:'curl',cue:'Gomiti fermi ai fianchi, palmi in avanti. Sali senza oscillare il busto, scendi in 2–3 secondi.'},
- hammer:{n:'Hammer curl',m:'Brachiale, avambracci',eq:'Manubri',t:'load',a:'curl',cue:'Presa neutra (pollici in alto) per tutto il movimento. Gomiti fermi.'},
+ hammer:{n:'Hammer curl',m:'Brachiale, avambracci',eq:'Manubri',t:'load',a:'hammer',cue:'Presa neutra (pollici in alto) per tutto il movimento. Gomiti fermi.'},
  curl_alt:{n:'Curl alternato con supinazione',m:'Bicipiti',eq:'Manubri',t:'load',a:'curl_alt',cue:'Un braccio alla volta: parti in presa neutra e ruota il palmo verso l\'alto salendo. Ripetizioni per braccio.'},
  knee_raise:{n:'Ginocchia al petto alla sbarra',m:'Addome basso, flessori anca',eq:'Sbarra del rack',t:'bw',a:'knee_raise',cue:'Appeso, porta le ginocchia sopra l\'altezza delle anche arrotolando il bacino. Scendi senza dondolare.'},
  leg_raise:{n:'Gambe tese alla sbarra',m:'Addome, flessori anca',eq:'Sbarra del rack',t:'bw',a:'leg_raise',cue:'Gambe tese fino a 90° (posizione a L), un secondo di tenuta, discesa lenta.'},
